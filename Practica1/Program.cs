@@ -35,13 +35,31 @@ do
     string nombreUsuarioMasChars = nombreUsuario;
 
     int contadorApellido = 2;
+    HashSet<string> nombresUsuariosGenerados = new HashSet<string>();
     while (estudiantes.Any(e => e.NombreUsuario == nombreUsuario))
     {
-        nombreUsuario = nombreUsuarioBase + segundoApellido.Substring(0, contadorApellido).ToLower();
+        if (contadorApellido <= segundoApellido.Length)
+        {
+            nombreUsuario = nombreUsuarioBase + segundoApellido.Substring(0, contadorApellido).ToLower();
+        }
+        else {
+
+            int numeroAleatorio;
+
+            Random r = new Random();
+            do
+            {
+                numeroAleatorio = r.Next(0, 99);
+            }
+            while (nombresUsuariosGenerados.Contains(nombreUsuario + numeroAleatorio));
+            nombreUsuario += numeroAleatorio.ToString();
+            //nombreUsuario = nombreUsuarioBase + segundoApellido.ToLower() + 
+        } 
+
+        nombresUsuariosGenerados.Add(nombreUsuario);
+
         contadorApellido++;
     }
-
-   
 
 
     string numeroCarnet = anoActual.ToString() + mesActual.ToString() + diaActual.ToString() + consecutivoInicial.ToString();
@@ -52,13 +70,10 @@ do
     es.SegundoApellido = segundoApellido;
     es.NombreUsuario = nombreUsuario;
     es.NumeroCarnet = int.Parse(numeroCarnet);
-
     
-
     estudiantes.Add(es);
 
     consecutivoInicial++;
-
 
     foreach (Estudiante e in estudiantes) {
         Console.WriteLine(" ");

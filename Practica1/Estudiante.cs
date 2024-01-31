@@ -8,10 +8,7 @@ namespace Practica1
 {
     internal class Estudiante
     {
-        public Estudiante() {
-            Alumnos = new List<string>();
-        }
-
+    
    
 
         public string NombreUsuario { get; set; }
@@ -21,6 +18,6 @@ namespace Practica1
 
         public int NumeroCarnet { get; set; }
 
-        public List<string> Alumnos { get; set; }
+        
     }
 }
